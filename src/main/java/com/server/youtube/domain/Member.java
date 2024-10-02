@@ -10,18 +10,18 @@ import lombok.NoArgsConstructor;
 
 @Entity @Builder
 @Data @NoArgsConstructor @AllArgsConstructor
-public class Channel {
+public class Member {
 
     @Id
-    @Column(name="channel_code")
-    private int channelCode;
-
-    @Column(name="channel_img")
-    private String channelImg;
-
-    @Column(name="channel_name")
-    private String channelName;
-
-    @Column(name="id")
     private String id;
+
+    @Column
+    private String password;
+
+    @Column
+    private String email;
+
+    @Column
+    private String phone;
+
 }

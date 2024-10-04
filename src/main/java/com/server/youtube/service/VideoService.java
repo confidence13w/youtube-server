@@ -22,6 +22,11 @@ public class VideoService {
         return dao.findAll(builder, pageable);
     }
 
+    public Video view(int code) {
+        dao.updateCount(code);
+        return dao.findById(code).get();
+    }
+
     public Video create(Video vo) {
         return dao.save(vo);
     }

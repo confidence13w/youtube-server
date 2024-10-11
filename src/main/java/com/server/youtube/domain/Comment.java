@@ -37,10 +37,6 @@ public class Comment {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="parent_code",
-                referencedColumnName = "comment_code",
-                insertable = false,
-                updatable = false)
+    @JoinColumn(name="parent_code", referencedColumnName = "comment_code", insertable = false, updatable = false)
     private Comment parent;
-
 }

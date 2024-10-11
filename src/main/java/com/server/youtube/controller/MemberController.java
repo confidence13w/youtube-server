@@ -32,9 +32,9 @@ public class MemberController {
         if(member!=null) {
             String token = tokenProvider.create(member);
             return ResponseEntity.ok(MemberDTO.builder()
-                                            .id(member.getId())
-                                            .token(token)
-                                            .build());
+                    .id(member.getId())
+                    .token(token)
+                    .build());
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }

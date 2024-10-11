@@ -27,18 +27,42 @@ public class CommentService {
 
     // 비디오별 상위 댓글들 보여주기 -> SQL문 짜보기!
     /*
-    * SELECT * FROM comment
-    * WHERE video_code = 1
-    *   AND parent_code = 0
-    * ORDER BY comment_date DESC
-    * */
+     *  SELECT * FROM comment
+     *  WHERE video_code = 1
+     *    AND parent_code = 0
+     *  ORDER BY comment_date DESC
+     * */
     public List<Comment> getTopComments(int videoCode) {
         return queryFactory
-                .selectFrom(qComment) // SELECT * FROM comment
-                .where(qComment.videoCode.eq(videoCode)) // WHERE video_code = 1
-                .where(qComment.parentCode.eq(0)) // AND parent_code = 0
-                .orderBy(qComment.commentDate.desc()) // ORDER BY comment_date DESC
+                .selectFrom(qComment)
+                .where(qComment.videoCode.eq(videoCode))
+                .where(qComment.parentCode.eq(0))
+                .orderBy(qComment.commentDate.desc())
                 .fetch();
     }
 
+    // 각 댓글의 하위 댓글들 가져오기
+    /*
+     *  SELECT * FROM comment
+     * WHERE parent_code = 1
+     * ORDER BY comment_date ASC
+     * */
+    public List<Comment> getReComments(int parentCode) {
+        return queryFactory.selectFrom(qComment)
+                .where(qComment.parentCode.eq(parentCode))
+                .orderBy(qComment.commentDate.asc())
+                .fetch();
+    }
+
+    // 댓글 수정
+    public void update(Comment vo) {
+        Comment comment = dao.findById(vo.getCommentCode()).get();
+        comment.setCommentText(vo.getCommentText());
+        dao.save(comment);
+    }
+
+    // 댓글 삭제
+    public void remove(int commentCode) {
+        dao.deleteById(commentCode);
+    }
 }

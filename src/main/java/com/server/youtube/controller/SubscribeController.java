@@ -21,8 +21,7 @@ public class SubscribeController {
     // 로그인한 사람 - 구독 추가
     @PostMapping("/private/sub")
     public ResponseEntity create(@RequestBody Subscribe vo) {
-        service.create(vo);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.ok(service.create(vo));
     }
 
     // 로그인한 사람 - 구독 취소

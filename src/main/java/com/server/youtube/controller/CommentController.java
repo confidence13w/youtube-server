@@ -69,6 +69,7 @@ public class CommentController {
                 .commentDate(comment.getCommentDate())
                 .id(comment.getId())
                 .videoCode(comment.getVideoCode())
+                .isDelete(comment.isDelete())
                 .build();
     }
 }
